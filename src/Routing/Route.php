@@ -176,44 +176,44 @@ class Route
      */
     protected function mergeControllerProperties()
     {
-        if (isset($this->action['uses']) && is_string($this->action['uses']) && Str::contains($this->action['uses'], '@')) {
-            $this->action['controller'] = $this->action['uses'];
+//         if (isset($this->action['uses']) && is_string($this->action['uses']) && Str::contains($this->action['uses'], '@')) {
+//             $this->action['controller'] = $this->action['uses'];
 
-            $this->makeControllerInstance();
-        }
+//             $this->makeControllerInstance();
+//         }
 
-        if (! $this->controllerUsesHelpersTrait()) {
-            return;
-        }
+//         if (! $this->controllerUsesHelpersTrait()) {
+//             return;
+//         }
 
-        $controller = $this->getControllerInstance();
+//         $controller = $this->getControllerInstance();
 
-        $controllerMiddleware = [];
+//         $controllerMiddleware = [];
 
-        if (method_exists($controller, 'getMiddleware')) {
-            $controllerMiddleware = $controller->getMiddleware();
-        } elseif (method_exists($controller, 'getMiddlewareForMethod')) {
-            $controllerMiddleware = $controller->getMiddlewareForMethod($this->controllerMethod);
-        }
+//         if (method_exists($controller, 'getMiddleware')) {
+//             $controllerMiddleware = $controller->getMiddleware();
+//         } elseif (method_exists($controller, 'getMiddlewareForMethod')) {
+//             $controllerMiddleware = $controller->getMiddlewareForMethod($this->controllerMethod);
+//         }
 
-        $this->middleware = array_merge($this->middleware, $controllerMiddleware);
+//         $this->middleware = array_merge($this->middleware, $controllerMiddleware);
 
-        if ($property = $this->findControllerPropertyOptions('throttles')) {
-            $this->throttle = $property['class'];
-        }
+//         if ($property = $this->findControllerPropertyOptions('throttles')) {
+//             $this->throttle = $property['class'];
+//         }
 
-        if ($property = $this->findControllerPropertyOptions('scopes')) {
-            $this->scopes = array_merge($this->scopes, $property['scopes']);
-        }
+//         if ($property = $this->findControllerPropertyOptions('scopes')) {
+//             $this->scopes = array_merge($this->scopes, $property['scopes']);
+//         }
 
-        if ($property = $this->findControllerPropertyOptions('authenticationProviders')) {
-            $this->authenticationProviders = array_merge($this->authenticationProviders, $property['providers']);
-        }
+//         if ($property = $this->findControllerPropertyOptions('authenticationProviders')) {
+//             $this->authenticationProviders = array_merge($this->authenticationProviders, $property['providers']);
+//         }
 
-        if ($property = $this->findControllerPropertyOptions('rateLimit')) {
-            $this->rateLimit = $property['limit'];
-            $this->rateExpiration = $property['expires'];
-        }
+//         if ($property = $this->findControllerPropertyOptions('rateLimit')) {
+//             $this->rateLimit = $property['limit'];
+//             $this->rateExpiration = $property['expires'];
+//         }
     }
 
     /**
